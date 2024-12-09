@@ -176,7 +176,7 @@ it('datepicker', () => {
   })
 })
 
-it.only('lists and drop-downs', () => {
+it('lists and drop-downs', () => {
   cy.visit('/')
 
   //1
@@ -198,10 +198,12 @@ it.only('lists and drop-downs', () => {
         if(index <  listLength -1){
           cy.wrap(objectDropdown).click()
         }
-
       })
-
     })
-
   })
+})
+
+
+it.only('', () => {
+  
 })
