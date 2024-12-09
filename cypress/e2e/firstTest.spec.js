@@ -140,7 +140,7 @@ it('checkboxes', () => {
 
 })
 
-it.only('datepicker', () => {
+it('datepicker', () => {
   function checkDate(numberOfDays){
     let date = new Date()
     date.setDate(date.getDate() + numberOfDays)
@@ -174,8 +174,34 @@ it.only('datepicker', () => {
     cy.wrap(input).should('have.value', dateToAssert)
 
   })
+})
 
+it.only('lists and drop-downs', () => {
+  cy.visit('/')
 
+  //1
+  cy.get('nav nb-select').click()
+  cy.get('.options-list').contains('Dark').click()
+  cy.get('nav nb-select').should('contain', 'Dark')
 
+  //2
+  cy.get('nav nb-select').then(objectDropdown => {
+    cy.wrap(objectDropdown).click()
+    cy.get('.options-list nb-option')
+    .then(list => {
+      const listLength = list.length
+      cy.wrap(list).each((listItem, index) => {
+        const itemText = listItem.text().trim()
+        console.log(listLength)
+        cy.wrap(listItem).click()
+        cy.wrap(objectDropdown).should('contain', itemText)
+        if(index <  listLength -1){
+          cy.wrap(objectDropdown).click()
+        }
 
+      })
+
+    })
+
+  })
 })
