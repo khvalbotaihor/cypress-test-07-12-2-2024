@@ -204,7 +204,7 @@ it('lists and drop-downs', () => {
 })
 
 
-it.only('web tables', () => {
+it('web tables', () => {
   cy.visit('/')
   cy.contains('Tables & Data').click()
   cy.contains('Smart Table').click()
@@ -230,19 +230,14 @@ it.only('web tables', () => {
       cy.wrap(tc).eq(2).should('contain', 'john')
       cy.wrap(tc).eq(3).should('contain', 'smith')
     })
-    // cy.get('thead').find('[ng-reflect-name="firstName"]').type('test name')
-    // cy.get('thead').find('[ng-reflect-name="lastName"]').type('last name')
-    // cy.get('thead').find('[ng-reflect-name="email"]').type('test@test.com')
-    // cy.get('thead').find('.nb-checkmark').click()
+})
 
-    // cy.get('tbody').contains('tr', 'test name').then(tableRow => {
-    //   cy.wrap(tableRow).contains('last name')
-    //   cy.wrap(tableRow).contains('test@test.com')
-
-    // })
+it.only('', () => {
+  cy.visit('/')
+  cy.contains('Tables & Data').click()
+  cy.contains('Smart Table').click()
 
 
-
-
+  
 
 })
