@@ -232,12 +232,30 @@ it('web tables', () => {
     })
 })
 
+// 3rd example - get each row validation
 it.only('', () => {
+  const ageList = [20,30,40,200]
   cy.visit('/')
   cy.contains('Tables & Data').click()
   cy.contains('Smart Table').click()
 
+  cy.wrap(ageList).each(age => {
+    cy.get('thead').find('[placeholder="Age"]').clear().type(age)
+    cy.wait(500)
+    cy.get('tbody tr').each(tRow => {
+      if(age == 200){
+        cy.wrap(tRow).find('td').eq(0).should('contain', 'No data found')
 
-  
+      }else{
+      cy.wrap(tRow).find('td').eq(6).should('contain', age)
+      }
+    })
+  })
+
+
+
+
+
+
 
 })
