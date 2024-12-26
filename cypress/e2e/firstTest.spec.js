@@ -233,7 +233,7 @@ it('web tables', () => {
 })
 
 // 3rd example - get each row validation
-it.only('', () => {
+it('get each row', () => {
   const ageList = [20,30,40,200]
   cy.visit('/')
   cy.contains('Tables & Data').click()
@@ -251,11 +251,16 @@ it.only('', () => {
       }
     })
   })
+})
 
 
+it.only('tooltips', () => {
+  cy.visit('/')
+  cy.contains('Modal & Overlays').click()
+  cy.contains('Tooltip').click()
 
-
-
-
+  cy.contains('nb-card', 'Colored Tooltips')
+    .contains('Default').click()
+  cy.get('nb-tooltip').should('contain', 'This is a tooltip')
 
 })
