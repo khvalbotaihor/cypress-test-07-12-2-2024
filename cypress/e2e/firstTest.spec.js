@@ -254,7 +254,7 @@ it('get each row', () => {
 })
 
 
-it.only('tooltips', () => {
+it('tooltips', () => {
   cy.visit('/')
   cy.contains('Modal & Overlays').click()
   cy.contains('Tooltip').click()
@@ -262,5 +262,40 @@ it.only('tooltips', () => {
   cy.contains('nb-card', 'Colored Tooltips')
     .contains('Default').click()
   cy.get('nb-tooltip').should('contain', 'This is a tooltip')
+
+})
+
+it('dialog', () => {
+  cy.visit('/')
+  cy.contains('Modal & Overlays').click()
+  cy.contains('Dialog').click()
+
+  cy.contains('button', 'Open Dialog with component').click()
+  cy.get('nb-card-header').should('contain', 'This is a title passed to the dialog component')
+  cy.get('nb-card-body').should('contain', ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis tincidunt tincidunt. Vestibulum vulputate maximus massa vel tristique. Suspendisse potenti. Duis aliquet purus sed dictum dictum. Donec fringilla, purus at fermentum imperdiet, velit enim malesuada turpis, quis luctus arcu arcu nec orci. Duis eu mattis felis. Quisque sollicitudin elementum nunc vel tincidunt. Vestibulum egestas mi nec iaculis varius. Morbi in risus sed sapien ultricies feugiat. Quisque pulvinar mattis purus, in aliquet massa aliquet et. ')
+  cy.get('nb-card-footer').should('contain', 'Dismiss Dialog')
+
+})
+
+
+it.only('dialog', () => {
+  cy.visit('/')
+  cy.contains('Tables & Data').click()
+  cy.contains('Smart Table').click()
+
+  // cy.get('tbody tr').first().find('.nb-trash').click()
+  // //approach #1
+  // cy.on('window:confirm', (confirm) => {
+  //   expect(confirm).to.eq('Are you sure you want to delete?')
+  // })
+  // approach #2, right approach, confirm delete and check text
+  // const stub = cy.stub()
+  // cy.on('window:confirm', stub)
+  // cy.get('tbody tr').first().find('.nb-trash').click().then(() => {
+  //   expect(stub.getCall(0)).to.be.calledWith('Are you sure you want to delete?')
+  // })
+  cy.get('tbody tr').first().find('.nb-trash').click()
+  // cancel delete function
+  cy.on('window:confirm', () => false)
 
 })
