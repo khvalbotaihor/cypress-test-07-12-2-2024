@@ -1,4 +1,5 @@
 const { navigateTo } = require("../support/page_objects/navigationPage")
+const {onFormLayoutPage} = require("../support/page_objects/formLayoutsPage")
 
 describe('Test with Page Objects', () => {
 
@@ -12,6 +13,13 @@ describe('Test with Page Objects', () => {
     navigateTo.toasterPage()
     navigateTo.smartTablePage()
     navigateTo.tooltipPage()
+  })
+
+  it(' should submit Inline and Basic form and select tomorrow date in the calendar', () => {
+    navigateTo.formLayoutsPage()
+    onFormLayoutPage.submitInlineFormWithNameAndEmail('John', 'test@gmail.com')
+
+
   })
 
 })
