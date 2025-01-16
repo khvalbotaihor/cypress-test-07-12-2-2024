@@ -11,6 +11,16 @@ export class FormLayoutsPage{
     })
   }
 
+  submitBasicFormWitEmailAndPassword(email, password){
+    cy.contains('nb-card','Basic form').find('form').then(form => {
+      cy.wrap(form).find('[id="exampleInputEmail1"]').type(email)
+      cy.wrap(form).find('[id="exampleInputPassword1"]').type(password)
+      cy.wrap(form).find('[type="checkbox"]').check({force: true})
+      //cy.wrap(form).find('[type="submit"]').click()
+      cy.wrap(form).submit()
+    })
+  }
+
 }
 
 export const onFormLayoutPage = new FormLayoutsPage()
