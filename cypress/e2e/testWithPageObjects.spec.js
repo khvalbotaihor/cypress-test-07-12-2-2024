@@ -1,6 +1,8 @@
 const { navigateTo } = require("../support/page_objects/navigationPage")
 const {onFormLayoutPage} = require("../support/page_objects/formLayoutsPage")
 const {onDatePickerPage} = require("../support/page_objects/datePickerPage")
+const {onSmartTablePage} = require("../support/page_objects/smartTablePage")
+
 
 describe('Test with Page Objects', () => {
 
@@ -20,9 +22,14 @@ describe('Test with Page Objects', () => {
     //navigateTo.formLayoutsPage()
     //onFormLayoutPage.submitInlineFormWithNameAndEmail('John', 'test@gmail.com')
     //onFormLayoutPage.submitBasicFormWitEmailAndPassword('test@mail.com','testpassword123')
-    navigateTo.datePickerPage()
+    //navigateTo.datePickerPage()
     //onDatePickerPage.selectDate(5)
-    onDatePickerPage.selectDateWithRange(1,2)
+    //onDatePickerPage.selectDateWithRange(11,22)
+    navigateTo.smartTablePage()
+    onSmartTablePage.updateAgeByFirstName()
+    onSmartTablePage.addNewUser()
+    onSmartTablePage.compareAge([20,30,40,200])
+
 
 
   })

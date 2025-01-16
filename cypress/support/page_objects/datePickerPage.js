@@ -13,7 +13,7 @@ function checkDate(numberOfDays){
       cy.get('[data-name="chevron-right"]').click()
       checkDate(numberOfDays)
     }else{
-      cy.get('.day-cell').not('bounding-month').contains(futureDay).click()
+      cy.get('.day-cell').not('.bounding-month').contains(futureDay).click()
     }
   })
   return dateToAssert;
