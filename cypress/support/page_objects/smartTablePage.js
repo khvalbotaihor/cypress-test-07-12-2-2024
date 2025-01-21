@@ -10,18 +10,18 @@ export class smartTablePage{
     })
   }
 
-  addNewUser(){
+  addNewUser(firstName, LasName){
     cy.get('thead').find('.nb-plus').click()
     cy.get('thead').find('tr').eq(2).then(tr => {
-      cy.wrap(tr).find('[placeholder="First Name"]').type('john')
-      cy.wrap(tr).find('[placeholder="Last Name"]').type('smith')
+      cy.wrap(tr).find('[placeholder="First Name"]').type(firstName)
+      cy.wrap(tr).find('[placeholder="Last Name"]').type(LasName)
       cy.wrap(tr).find('.nb-checkmark').click()
 
     })
 
     cy.get('tbody tr').first().find('td').then(tc => {
-      cy.wrap(tc).eq(2).should('contain', 'john')
-      cy.wrap(tc).eq(3).should('contain', 'smith')
+      cy.wrap(tc).eq(2).should('contain', firstName)
+      cy.wrap(tc).eq(3).should('contain', LasName)
     })
   }
 
@@ -37,6 +37,14 @@ export class smartTablePage{
         cy.wrap(tRow).find('td').eq(6).should('contain', age)
         }
       })
+    })
+  }
+
+  deleteRowByIndex(index){
+    const stub = cy.stub()
+    cy.on('window:confirm', stub)
+    cy.get('tbody tr').eq(index).find('.nb-trash').click().then(() => {
+      expect(stub.getCall(0)).to.be.calledWith('Are you sure you want to delete?')
     })
   }
 
